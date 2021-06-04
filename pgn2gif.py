@@ -58,16 +58,14 @@ def main(argv):
 	for m in game.mainline_moves():
 		board.push(m)
 		generate_png(board, i)
-		if i > 1:
-			break
 		i += 1
 
-	# duplicate last frame 3 more times for pause animation at the end:
-	#for j in range(3):
-		#generate_png(i)
-		#i += 1
+	# Duplicate last frame 3 times for pause animation at the end
+	for j in range(3):
+		generate_png(board, i)
+		i += 1
 
-	# convert pgns to gif
+	# Convert PGNs to GIF
 	os.system("convert -delay 150 g_*.png -loop 0 g.gif")
 	os.system("rm -f g_*.png")
 	print("GIF has been generated successfully")
